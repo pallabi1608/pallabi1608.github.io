@@ -36,391 +36,445 @@
             50% { transform: translate(-3%, 3%) rotate(-1deg); }
             75% { transform: translate(3%, -3%) rotate(1deg); }
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
         header {
-            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color); position: sticky;
-            top: 0; z-index: 1000; animation: slideDown 0.5s ease-out;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            padding: 4rem 0; text-align: center; position: relative; overflow: hidden;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
         }
-        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-        .logo {
-            font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        header::before {
+            content: ''; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        h1 {
+            font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: glow 2s ease-in-out infinite alternate;
+            background-clip: text; position: relative; z-index: 1;
         }
-        @keyframes glow { from { filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5)); } to { filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.8)); } }
-        nav ul { list-style: none; display: flex; gap: 2rem; }
-        nav a {
-            color: #e2e8f0; text-decoration: none; transition: all 0.3s ease;
-            position: relative; padding: 0.5rem 0;
+        .tagline {
+            font-size: 1.2rem; color: #94a3b8; margin-bottom: 2rem;
+            position: relative; z-index: 1;
         }
-        nav a::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            transition: width 0.3s ease;
+        .social-links {
+            display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+            position: relative; z-index: 1;
         }
-        nav a:hover::after { width: 100%; }
-        .hero { padding: 100px 0; text-align: center; position: relative; animation: fadeInUp 0.8s ease-out; }
-        @keyframes fadeInUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
-        .hero-content { display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
-        .hero-text { flex: 1; min-width: 300px; }
-        .hero-image { flex: 0 0 250px; }
-        .profile-image {
-            width: 250px; height: 250px; border-radius: 50%; object-fit: contain;
-            border: 4px solid var(--primary-color); box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+        .social-links a {
+            color: #e2e8f0; text-decoration: none; font-size: 1.5rem;
+            transition: all 0.3s ease; display: inline-block;
+        }
+        .social-links a:hover {
+            color: var(--primary-color); transform: translateY(-3px) scale(1.1);
+        }
+        section {
+            background: var(--bg-card); backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color); border-radius: 12px;
+            padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.2);
+        }
+        h2 {
+            font-size: 2rem; margin-bottom: 1.5rem; color: #a78bfa;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+            padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;
+        }
+        h3 {
+            font-size: 1.4rem; color: #60a5fa; margin-bottom: 0.5rem;
+        }
+        .timeline-item {
+            position: relative; padding-left: 2rem; margin-bottom: 2rem;
+            border-left: 2px solid rgba(139, 92, 246, 0.3);
+        }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -6px; top: 0;
+            width: 10px; height: 10px; border-radius: 50%;
+            background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        }
+        .date {
+            color: #94a3b8; font-size: 0.9rem; font-style: italic;
+            display: inline-block; margin-bottom: 0.5rem;
+        }
+        .location {
+            color: #94a3b8; font-size: 0.9rem; font-style: italic;
+        }
+        .job-title {
+            color: #e2e8f0; font-weight: 600; font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        ul {
+            list-style: none; padding-left: 0;
+        }
+        li {
+            padding: 0.5rem 0; padding-left: 1.5rem; position: relative;
+        }
+        li::before {
+            content: '▹'; position: absolute; left: 0; color: var(--primary-color);
+            font-weight: bold;
+        }
+        .skills-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-category {
+            background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 8px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
             transition: all 0.3s ease;
         }
-        .profile-image:hover { transform: scale(1.05); box-shadow: 0 15px 40px rgba(138, 43, 226, 0.5); }
-        
-        .hero h1 {
-            font-size: 3.5rem; margin-bottom: 1rem;
-            background: linear-gradient(135deg, #60a5fa, #a78bfa, #ec4899);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: textGradient 3s ease infinite;
+        .skill-category:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateY(-2px);
         }
-        @keyframes textGradient { 0%, 100% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(30deg); } }
-        .hero .subtitle { font-size: 1.5rem; color: #94a3b8; margin-bottom: 2rem; }
-        .contact-info { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; color: #cbd5e1; }
-        .contact-info span { display: flex; align-items: center; gap: 0.5rem; }
-        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
-        .social-links a, .download-link {
-            display: inline-flex; align-items: center; justify-content: center; height: 50px; padding: 0 1.5rem;
-            background: var(--bg-card); border: 2px solid var(--primary-color); border-radius: 25px;
-            color: #e2e8f0; text-decoration: none; transition: all 0.3s ease; position: relative;
-            overflow: hidden; font-weight: 500;
+        .skill-category h4 {
+            color: #a78bfa; margin-bottom: 0.8rem; font-size: 1.1rem;
         }
-        .social-links a { width: 50px; padding: 0; border-radius: 50%; }
-        .social-links a::before, .download-link::before {
-            content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%; transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease;
+        .skill-tags {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
         }
-        .download-link::before { border-radius: 25px; }
-        .social-links a:hover::before, .download-link:hover::before { width: 100%; height: 100%; }
-        .social-links a span, .download-link span { position: relative; z-index: 1; }
-        .social-links a:hover, .download-link:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4); }
-        .download-link { margin-left: 1rem; }
-        
-        .section { padding: 80px 0; animation: fadeIn 1s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .section h2 {
-            font-size: 2.5rem; margin-bottom: 3rem; text-align: center;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            position: relative; display: inline-block; width: 100%;
+        .skill-tag {
+            background: rgba(139, 92, 246, 0.2); color: #e2e8f0;
+            padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
         }
-        .section h2::after {
-            content: ''; position: absolute; bottom: -10px; left: 50%;
-            transform: translateX(-50%); width: 100px; height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
+        .skill-tag:hover {
+            background: rgba(139, 92, 246, 0.4);
+            transform: scale(1.05);
         }
-        .about-content { border-radius: 20px; padding: 3rem; margin: 0 auto; max-width: 900px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); transform: perspective(1000px) rotateX(5deg); transition: transform 0.3s ease; }
-        .about-content:hover { transform: perspective(1000px) rotateX(0deg) scale(1.02); }
-        .about-content p { font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; margin-bottom: 1.5rem; }
-        
-        .scroll-container {
-            display: flex; overflow-x: auto; gap: 2rem; padding: 2rem 0; padding-bottom: 1rem;
-            -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory;
-        }
-        .scroll-container::-webkit-scrollbar { height: 8px; }
-        .scroll-container::-webkit-scrollbar-track { background: transparent; border-radius: 10px; }
-        .scroll-container::-webkit-scrollbar-thumb {
-            background-color: var(--primary-color); border-radius: 10px; border: 2px solid var(--bg-primary);
-        }
-        .scroll-container::-webkit-scrollbar-thumb:hover { background-color: var(--secondary-color); }
-        
         .project-card {
-            min-width: 350px; flex-shrink: 0; border-radius: 15px; padding: 2rem;
-            transition: all 0.3s ease; scroll-snap-align: start; position: relative; overflow: hidden;
+            background: rgba(59, 130, 246, 0.05); padding: 1.5rem; border-radius: 8px;
+            border: 1px solid rgba(59, 130, 246, 0.2); margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
         }
-        .project-card::after {
-            content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
-            transition: transform 0.5s ease; transform: rotate(45deg) translate(-50%, -50%);
+        .project-card:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateX(5px);
         }
-        .project-card:hover::after { transform: rotate(45deg) translate(-30%, -30%); }
-        .project-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3); border-color: var(--primary-color); }
-        .project-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem; position: relative; z-index: 1; }
-        .project-card .date { color: #64748b; font-size: 0.9rem; margin-bottom: 1rem; position: relative; z-index: 1; }
-        .project-card ul { list-style: none; color: #cbd5e1; position: relative; z-index: 1; }
-        .project-card li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; }
-        .project-card li::before { content: '▸'; position: absolute; left: 0; color: var(--secondary-color); }
-        
-        .experience-scroll-container {
-            display: flex; overflow-x: auto; gap: 2rem; padding-bottom: 1rem; padding: 2rem 0;
-            -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory;
+        .cert-item {
+            background: rgba(236, 72, 153, 0.05); padding: 1rem; border-radius: 8px;
+            border-left: 3px solid #ec4899; margin-bottom: 1rem;
+            transition: all 0.3s ease;
         }
-        .experience-scroll-container::-webkit-scrollbar { height: 8px; }
-        .experience-scroll-container::-webkit-scrollbar-track { background: transparent; border-radius: 10px; }
-        .experience-scroll-container::-webkit-scrollbar-thumb {
-            background-color: var(--primary-color); border-radius: 10px; border: 2px solid var(--bg-primary);
+        .cert-item:hover {
+            background: rgba(236, 72, 153, 0.1);
+            transform: translateX(5px);
         }
-        .experience-scroll-container::-webkit-scrollbar-thumb:hover { background-color: var(--secondary-color); }
-        .experience-card, .education-card {
-            min-width: 350px; flex-shrink: 0; border-radius: 15px; padding: 2rem;
-            transition: all 0.3s ease; scroll-snap-align: start;
-        }
-        .experience-card:hover, .education-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3); border-color: var(--primary-color); }
-        .experience-card h3, .education-card h3 { color: var(--primary-color); margin-bottom: 0.5rem; }
-        .experience-card .company, .education-card .institution { color: #94a3b8; margin-bottom: 0.5rem; }
-        .experience-card .period, .education-card .period { color: #64748b; font-size: 0.9rem; margin-bottom: 1rem; }
-        .experience-card ul, .education-card ul { list-style: none; color: #cbd5e1; }
-        .experience-card li, .education-card li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; }
-        .experience-card li::before, .education-card li::before { content: '▸'; position: absolute; left: 0; color: var(--secondary-color); }
-        
-        .skills-container { max-width: 800px; margin: 0 auto; }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; justify-items: center; }
-        .skill-item {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border-radius: 15px; padding: 1.5rem 1rem; transition: all 0.3s ease; position: relative;
-            width: 100%; max-width: 180px; text-align: center;
-        }
-        .skill-item:hover { transform: translateY(-5px) scale(1.05); background: rgba(30, 41, 59, 0.9); box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3); }
-        .skill-icon { font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 0.5rem; }
-        .skill-label { font-size: 1rem; color: #e2e8f0; font-weight: 500; }
-        
         footer {
-            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px);
-            border-top: 1px solid var(--border-color); padding: 2rem 0; text-align: center;
-            color: #64748b;
+            text-align: center; padding: 2rem 0; color: #94a3b8;
+            border-top: 1px solid rgba(139, 92, 246, 0.3);
+            margin-top: 3rem;
         }
         @media (max-width: 768px) {
-            nav ul { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero-content { flex-direction: column; text-align: center; }
-            .hero-image { order: -1; }
-            .experience-scroll-container, .scroll-container { scroll-snap-type: x mandatory; }
-            .contact-info { flex-direction: column; gap: 1rem; }
-            .social-links { flex-wrap: wrap; }
+            h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+            section { padding: 1.5rem; }
+            .skills-grid { grid-template-columns: 1fr; }
         }
-        html { scroll-behavior: smooth; }
-        ::selection { background: var(--primary-color); color: white; }
     </style>
 </head>
 <body>
     <div class="bg-animation"></div>
+
     <header>
-        <nav class="container">
-            <div class="logo">PP</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <h1>Pallabi Pathak</h1>
+            <p class="tagline">AI & ML Engineer | Deep Learning & NLP Specialist | Systems Engineering Expert</p>
+            <div class="social-links">
+                <a href="https://github.com/pallabi1608" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/pallabipathak" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:pallabipathak08@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://kaggle.com/pallabipathak" target="_blank" title="Kaggle"><i class="fab fa-kaggle"></i></a>
+                <a href="https://huggingface.co/pallabi1608" target="_blank" title="Hugging Face"><i class="fas fa-smile"></i></a>
+            </div>
+        </div>
     </header>
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-image">
-                    <img src="my_photo.jpg" alt="Pallabi Pathak" class="profile-image" width="200">
-                </div>
-                <div class="hero-text">
-                    <h1>Pallabi Pathak</h1>
-                    <p class="subtitle">Software Developer | AI & ML Enthusiast | Deep Learning Specialist</p>
-                    <div class="contact-info">
-                        <span>📍 Würzburg, Bavaria, Germany</span>
-                        <span>📧 pallabipathak08@gmail.com</span>
-                        <span>📱 +49 152 10915473</span>
+
+    <div class="container">
+        <section id="about">
+            <h2><i class="fas fa-user"></i> Professional Summary</h2>
+            <p>
+                A dedicated, detail-oriented professional with 4+ years of firmware experience in building low-level, performance-critical systems. Currently pursuing a Master of Science in Computer Science with a specialisation in Artificial Intelligence at the Julius Maximilians University of Wuerzburg. Experienced in Deep Learning, Natural Language Processing, Large Language Models, and Generative AI with proven expertise in designing scalable AI pipelines, model evaluation frameworks, and fine-tuning Transformer-based architectures. Strong foundation in systems programming, multilingual NLP, prompt engineering, and efficient LLM training methods. Eager to apply my background in systems-level engineering and cutting-edge AI research to contribute to a growing team and build robust, reliable, production-ready solutions for industrial deployment.
+            </p>
+        </section>
+
+        <section id="education">
+            <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="timeline-item">
+                <h3>Master of Science in Computer Science</h3>
+                <p class="job-title">Specialisation in Artificial Intelligence</p>
+                <p class="date">Oct 2023 - Present</p>
+                <p class="location">Julius Maximilians University of Würzburg, Germany</p>
+                <ul>
+                    <li>Credits: 85 | Grade: 2.4 | Expected Graduation: Sep 2026</li>
+                    <li>Master's Thesis (ongoing): "BabeLexSem: Massively Multilingual Lexical-Semantics Benchmark for Evaluating Multilingual Large Language Models"</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h3>B. Tech in Computer Science and Engineering</h3>
+                <p class="job-title">Specialisation in Software Engineering</p>
+                <p class="date">Jul 2015 - Nov 2019</p>
+                <p class="location">Kalinga Institute of Industrial Technology, Deemed University, Bhubaneswar, India</p>
+                <ul>
+                    <li>Grade: 2.1 (in German Scale)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
+
+            <div class="timeline-item">
+                <h3>Tabularis GmbH</h3>
+                <p class="job-title">Artificial Intelligence Development Intern</p>
+                <p class="date">Oct 2025 - Jan 2026</p>
+                <p class="location">Heilbronn, Germany</p>
+                <ul>
+                    <li>Evaluated state-of-the-art Large Language Models on diverse benchmark frameworks, ensuring consistency and accuracy in evaluation outputs across multiple metrics and languages</li>
+                    <li>Designed and implemented automated benchmarking pipelines and scripts for Hugging Face model interfaces</li>
+                    <li>Analysed discrepancies in model performance data, providing actionable insights for model improvement</li>
+                    <li>Collaborated with the research team to advance AI model development and framework optimisation</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>HP Inc. (Hewlett-Packard)</h3>
+                <p class="job-title">Software Firmware Engineer 2</p>
+                <p class="date">Nov 2021 - Sep 2023</p>
+                <p class="location">Bengaluru, India</p>
+                <ul>
+                    <li>Engineered efficient low-level algorithms in C/C++11, 17 for 50+ firmware features</li>
+                    <li>Designed and optimised advanced page rendering algorithms through research in the printer technology domain, which significantly improved firmware operational costs by 50% across multiple product lines</li>
+                    <li>Developed and deployed 100+ critical firmware features and fixes addressing high-priority and client-facing production bugs in page parser code for 4 products' beta releases, ensuring release stability and quality</li>
+                    <li>Headed strategic initiatives in ensuring print quality, delivering performance improvements by 30% to 50%</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>HP Inc. (Hewlett-Packard)</h3>
+                <p class="job-title">Systems Software Engineer 1</p>
+                <p class="date">Aug 2019 - Oct 2021</p>
+                <p class="location">Bengaluru, India</p>
+                <ul>
+                    <li>Implemented memory-efficient embedded code in C++11 for multiple parsers in printers</li>
+                    <li>Refactored production code for critical page parser decompressors, print colour conversion algorithms, and page layout strip rotation logic, employing efficient triage methods and memory leak analysis to enhance performance and reliability for 200+ features</li>
+                    <li>Contributed across global teams, achieving crucial print certifications for the products' first beta releases</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>HP Inc. (Hewlett-Packard)</h3>
+                <p class="job-title">Research and Development Intern</p>
+                <p class="date">Jan 2019 - Jul 2019</p>
+                <p class="location">Bengaluru, India</p>
+                <ul>
+                    <li>Developed an innovative data analytics and data-driven prototype using C#/.NET and Power BI that tracked usage levels of each printer feature globally across all HP printers, enabling data-driven prioritisation of firmware development cycles for improved feature planning across all firmware releases</li>
+                    <li>Prototype received acceptance and expanded into a globally executed project aligned with customer needs</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>EY (Ernst & Young LLP)</h3>
+                <p class="job-title">Summer Data Analyst Intern</p>
+                <p class="date">Jun 2018 - Jul 2018</p>
+                <p class="location">Kolkata, India</p>
+                <ul>
+                    <li>Analysed complex financial datasets for high-profile clients, delivering consolidated impact reports and visualisations using Microsoft Excel and PowerPoint that directly supported audit readiness and strategic decision-making</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2><i class="fas fa-code"></i> Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Programming Languages</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python (2+ years)</span>
+                        <span class="skill-tag">C/C++ (4+ years)</span>
+                        <span class="skill-tag">Java (4+ years)</span>
                     </div>
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/pallabipathak" target="_blank" title="LinkedIn"><span><i class="fa-brands fa-linkedin-in"></i></span></a>
-                        <a href="https://github.com/pallabi1608" target="_blank" title="GitHub"><span><i class="fa-brands fa-github"></i></span></a>
-                        <a href="https://hackerrank.com/profile/pallabi1608" target="_blank" title="HackerRank"><span><i class="fas fa-code"></i></span></a>
-                        <a href="https://leetcode.com/u/pallabi1608" target="_blank" title="LeetCode"><span><i class="fas fa-terminal"></i></span></a>
-                        <a href="https://pallabi1608.github.io" target="_blank" title="Website"><span><i class="fas fa-globe"></i></span></a>
-                        <a href="#" download class="download-link" title="Download CV">
-                            <span><i class="fas fa-download"></i> CV</span>
-                        </a>
+                </div>
+                <div class="skill-category">
+                    <h4>AI/ML Frameworks & Libraries</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">scikit-learn</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">spaCy</span>
+                        <span class="skill-tag">NLTK</span>
+                        <span class="skill-tag">Sentence Transformers</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">CrewAI</span>
+                        <span class="skill-tag">AutoGen</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">LLMOps</span>
+                        <span class="skill-tag">PydanticAI</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>AI/ML Fundamentals</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">CNN</span>
+                        <span class="skill-tag">RNN</span>
+                        <span class="skill-tag">Transformers</span>
+                        <span class="skill-tag">Attention Mechanisms</span>
+                        <span class="skill-tag">NLP</span>
+                        <span class="skill-tag">Generative AI</span>
+                        <span class="skill-tag">RAG</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">Computer Vision</span>
+                        <span class="skill-tag">VLMs</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Tools & Platforms</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Jupyter Notebook</span>
+                        <span class="skill-tag">PyCharm</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">Microsoft Office</span>
+                        <span class="skill-tag">Google Workspace</span>
+                        <span class="skill-tag">Lightning AI</span>
+                        <span class="skill-tag">Kaggle</span>
+                        <span class="skill-tag">BabelNet</span>
+                        <span class="skill-tag">LM Evaluation Harness</span>
+                        <span class="skill-tag">Hugging Face Hub</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">AWS</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Technologies & Workflows</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">OOP</span>
+                        <span class="skill-tag">Modular Software Design</span>
+                        <span class="skill-tag">Algorithms & Data Structures</span>
+                        <span class="skill-tag">System Engineering</span>
+                        <span class="skill-tag">Low Level Systems Design</span>
+                        <span class="skill-tag">Debugging</span>
+                        <span class="skill-tag">Optimisation</span>
+                        <span class="skill-tag">API Integrations</span>
+                        <span class="skill-tag">Model Training & Evaluation</span>
+                        <span class="skill-tag">MLOps</span>
+                        <span class="skill-tag">Fine-tuning (PEFT)</span>
+                        <span class="skill-tag">AI Tools & Workflows</span>
+                        <span class="skill-tag">Data Engineering</span>
+                        <span class="skill-tag">Embedding Strategies</span>
+                        <span class="skill-tag">Agentic AI</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="about" class="section">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content card">
-                <p>I'm a Software Developer with 4+ years of professional experience in designing and implementing low-level firmware for memory-critical devices, now pursuing a focused career transition into Artificial Intelligence and Machine Learning.</p>
-                <p>Strongly motivated to apply technical expertise to the development of intelligent systems that address real-world challenges. I demonstrate particular enthusiasm for Deep Learning, with a growing specialization in Generative AI, including Large Language Models (LLMs), 2D/3D Computer Vision, Multimodal AI with Transformers, as well as Autoencoders, GANs, and Diffusion Models.</p>
-                <p>My diverse background spans from optimizing firmware algorithms for HP printers to building cutting-edge AI applications. I've worked across global teams achieving crucial certifications for beta releases, developed innovative prototypes for data-driven decision-making, and contributed to complex financial analysis projects.</p>
-                <p>Currently pursuing my Master's in Computer Science at Julius Maximilians University of Würzburg, I'm actively seeking entry-level opportunities to contribute my passion, knowledge, and problem-solving skills to innovative projects in the field of AI.</p>
+        </section>
+
+        <section id="projects">
+            <h2><i class="fas fa-project-diagram"></i> Featured Projects</h2>
+
+            <div class="project-card">
+                <h3>Lexical Meaning Benchmark – Multilingual Semantic QA</h3>
+                <p class="date">April 2025 - Oct 2025</p>
+                <p class="location">Associated with Julius Maximilians University of Würzburg - Chair of Natural Language Processing</p>
+                <p>
+                    Comprehensive multilingual benchmark spanning 50 languages to evaluate LLMs' understanding of semantic relationships, leveraging BabelNet's knowledge graph and integrating LM Eval Harness for evaluation across language pairs, resource availability (high, medium, low), difficulty levels, considering model size, architecture, and fine-tuning strategies.
+                </p>
             </div>
-        </div>
-    </section>
-    <section id="projects" class="section">
-        <div class="container">
-            <h2>Featured Projects</h2>
-            <div class="scroll-container">
-                <div class="project-card card">
-                    <h3>Lexical Meaning Benchmark – Multilingual Semantic QA</h3>
-                    <div class="date">April 2025 – Aug 2025</div>
-                    <ul>
-                        <li>Developed comprehensive multilingual benchmark spanning 50 languages to evaluate LLMs</li>
-                        <li>Automated creation of multilingual datasets using seed word retrieval algorithms</li>
-                        <li>Leveraged BabelNet's knowledge graph and integrated LM Eval Harness</li>
-                        <li>Conducted detailed analyses across language pairs and difficulty levels</li>
-                    </ul>
-                </div>
-                <div class="project-card card">
-                    <h3>Text-to-Image Generation with DeepFloyd IF</h3>
-                    <div class="date">April 2024 – Aug 2024</div>
-                    <ul>
-                        <li>Built web-based demo using DeepFloyd IF for text-to-image generation</li>
-                        <li>Conducted in-depth research on Parti and Imagen models</li>
-                        <li>Implemented and evaluated state-of-the-art diffusion model</li>
-                        <li>Demonstrated effectiveness for high-fidelity image generation</li>
-                    </ul>
-                </div>
-                <div class="project-card card">
-                    <h3>Step of Faith: Risk and Fear in Immersive Realities</h3>
-                    <div class="date">Oct 2023 – Mar 2024</div>
-                    <ul>
-                        <li>Built VR simulation of hanging bridge with unstable tiles</li>
-                        <li>Analyzed psychological responses to fear-inducing XR environments</li>
-                        <li>Demonstrated VR potential for therapeutic exposure therapy</li>
-                        <li>Explored XR applications for addressing perception and safety challenges</li>
-                    </ul>
-                </div>
+
+            <div class="project-card">
+                <h3>Text-to-Image Generation with DeepFloyd IF, Parti, and Imagen</h3>
+                <p class="date">April 2024 - Oct 2024</p>
+                <p class="location">Associated with Julius Maximilians University of Würzburg - Chair of Computer Vision</p>
+                <p>
+                    Web-based demo application using DeepFloyd IF, a state-of-the-art diffusion model, for generating high-fidelity images from textual prompts with Hugging Face integration, together with in-depth research on Parti (Autoregressive transformer model) and Imagen (Diffusion-based model).
+                </p>
             </div>
-        </div>
-    </section>
-    <section id="experience" class="section">
-        <div class="container">
-            <h2>Professional Experience</h2>
-            <div class="experience-scroll-container">
-                <div class="experience-card card">
-                    <h3>Software Firmware Engineer 2</h3>
-                    <div class="company">Hewlett-Packard Inc. (HP Inc.)</div>
-                    <div class="period">Nov 2021 – Sep 2023 | Bengaluru, India</div>
-                    <ul>
-                        <li>Engineered efficient low-level algorithms in C/C++11, 17 for 50+ firmware features</li>
-                        <li>Improved firmware operational costs by 50% across multiple products</li>
-                        <li>Developed critical firmware features for four products' beta releases</li>
-                        <li>Delivered performance improvements by 30% in print quality</li>
-                    </ul>
+
+            <div class="project-card">
+                <h3>Step of Faith: Risk and Fear in Immersive Realities</h3>
+                <p class="date">Oct 2023 - Mar 2024</p>
+                <p class="location">Associated with Julius Maximilians University of Würzburg - Chair of Human Computer Interaction</p>
+                <p>
+                    VR application simulating a hanging bridge with unstable tiles to study fear of heights and falling, demonstrating the potential of VR as a therapeutic tool for exposure by creating controlled, fear-inducing scenarios that enable participants to safely confront phobias and manage anxiety.
+                </p>
+            </div>
+        </section>
+
+        <section id="certifications">
+            <h2><i class="fas fa-certificate"></i> Certifications</h2>
+            <div class="cert-item">
+                <h4>Microsoft Azure AI Essentials Professional Certificate</h4>
+                <p>Machine Learning, NLP, Generative AI, Azure AI Studio</p>
+            </div>
+            <div class="cert-item">
+                <h4>Career Essentials in Generative AI (Microsoft, LinkedIn)</h4>
+                <p>Prompt Engineering, Responsible AI, GenAI Applications</p>
+            </div>
+            <div class="cert-item">
+                <h4>Hugging Face LLM Certification</h4>
+                <p>NLP, Transformer Architectures, Large Language Models</p>
+            </div>
+            <div class="cert-item">
+                <h4>Encoder–Decoder Architecture</h4>
+                <p>Sequence-to-Sequence Models, NLP, Deep Learning</p>
+            </div>
+        </section>
+
+        <section id="languages">
+            <h2><i class="fas fa-language"></i> Languages</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>English</h4>
+                    <p>Bilingual, C1 (IELTS 8 BAND)</p>
                 </div>
-                <div class="experience-card card">
-                    <h3>Systems Software Engineer 1</h3>
-                    <div class="company">Hewlett-Packard Inc. (HP Inc.)</div>
-                    <div class="period">Aug 2019 – Oct 2021 | Bengaluru, India</div>
-                    <ul>
-                        <li>Implemented memory efficient embedded code in C++11 for multiple parsers</li>
-                        <li>Refactored production code for critical page parser decompressors</li>
-                        <li>Enhanced performance and reliability through efficient triage methods</li>
-                        <li>Contributed across global teams achieving crucial print certifications</li>
-                    </ul>
+                <div class="skill-category">
+                    <h4>German</h4>
+                    <p>Limited Working Proficiency, B1 (Duolingo Score 72)</p>
                 </div>
-                <div class="experience-card card">
-                    <h3>Research and Development Intern</h3>
-                    <div class="company">Hewlett-Packard Inc. (HP Inc.)</div>
-                    <div class="period">Jan 2019 – Jul 2019 | Bengaluru, India</div>
-                    <ul>
-                        <li>Developed C#/.NET and Power BI prototype for printer feature tracking</li>
-                        <li>Focused on customer perspectives across HP printer products</li>
-                        <li>Enabled data-driven prioritization of firmware development cycles</li>
-                        <li>Improved feature planning and release strategies worldwide</li>
-                    </ul>
+                <div class="skill-category">
+                    <h4>Bengali</h4>
+                    <p>Native, C1 (Mother tongue)</p>
                 </div>
-                <div class="experience-card card">
-                    <h3>Summer Data Analyst Intern</h3>
-                    <div class="company">Ernst & Young LLP (EY)</div>
-                    <div class="period">Jun 2018 – Jul 2018 | Kolkata, India</div>
-                    <ul>
-                        <li>Analyzed complex financial datasets for high-profile clients</li>
-                        <li>Delivered consolidated impact reports and visualizations</li>
-                        <li>Used Microsoft Excel and PowerPoint for strategic decision-making</li>
-                        <li>Supported audit readiness and client requirements</li>
-                    </ul>
+                <div class="skill-category">
+                    <h4>Hindi</h4>
+                    <p>Professional Working Proficiency, B2 (Fluent)</p>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section id="education" class="section">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="experience-scroll-container">
-                <div class="education-card card">
-                    <h3>Master of Science in Computer Science (Informatik)</h3>
-                    <div class="institution">Julius Maximilians University of Würzburg</div>
-                    <div class="period">Oct 2023 – Mar 2026 (expected) | Würzburg, Germany</div>
-                    <ul>
-                        <li>Current Grade: 2.4 (German Scale)</li>
-                        <li>Specialization in AI, ML, and Computer Vision</li>
-                        <li>Research focus on multilingual AI and generative models</li>
-                        <li>Advanced coursework in Deep Learning and NLP</li>
-                    </ul>
-                </div>
-                <div class="education-card card">
-                    <h3>B. Tech in Computer Science and Engineering</h3>
-                    <div class="institution">Kalinga Institute of Industrial Technology</div>
-                    <div class="period">Jul 2015 – Nov 2019 | Bhubaneswar, India</div>
-                    <ul>
-                        <li>Grade: 2.1 (German Scale)</li>
-                        <li>Core subjects: Algorithms, Data Structures, Software Engineering</li>
-                        <li>Foundation in computer science principles and programming</li>
-                        <li>Strong analytical and problem-solving skills development</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="skills" class="section">
-        <div class="container">
-            <h2>Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skills-grid">
-                    <div class="skill-item card"><span class="skill-icon">🐍</span><span class="skill-label">Python</span></div>
-                    <div class="skill-item card"><span class="skill-icon">🔥</span><span class="skill-label">PyTorch</span></div>
-                    <div class="skill-item card"><span class="skill-icon">🧠</span><span class="skill-label">Deep Learning</span></div>
-                    <div class="skill-item card"><span class="skill-icon">🤖</span><span class="skill-label">LLMs</span></div>
-                    <div class="skill-item card"><span class="skill-icon">👁️</span><span class="skill-label">Computer Vision</span></div>
-                    <div class="skill-item card"><span class="skill-icon">📝</span><span class="skill-label">NLP</span></div>
-                    <div class="skill-item card"><span class="skill-icon">⚡</span><span class="skill-label">C/C++</span></div>
-                    <div class="skill-item card"><span class="skill-icon">🤗</span><span class="skill-label">Hugging Face</span></div>
-                    <div class="skill-item card"><span class="skill-icon">📊</span><span class="skill-label">TensorFlow</span></div>
-                    <div class="skill-item card"><span class="skill-icon">🐳</span><span class="skill-label">Docker</span></div>
-                    <div class="skill-item card"><span class="skill-icon">⚙️</span><span class="skill-label">Git</span></div>
-                    <div class="skill-item card"><span class="skill-icon">🔬</span><span class="skill-label">AI Research</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+        </section>
+
+        <section id="interests">
+            <h2><i class="fas fa-heart"></i> Personal Interests</h2>
+            <ul>
+                <li>Sports: Lawn tennis (12+ years of professional training and active participation)</li>
+                <li>Engagement in social and environmental initiatives addressing climate change, sustainability, and animal welfare</li>
+                <li>Competitive programming and algorithmic problem-solving challenges</li>
+            </ul>
+        </section>
+    </div>
+
     <footer>
         <div class="container">
-            <p>&copy; 2025 Pallabi Pathak. All rights reserved.</p>
+            <p>&copy; 2026 Pallabi Pathak. All rights reserved.</p>
+            <p>Wuerzburg, Bavaria, Germany | <a href="mailto:pallabipathak08@gmail.com" style="color: #a78bfa;">pallabipathak08@gmail.com</a></p>
         </div>
     </footer>
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'all 0.6s ease-out';
-            observer.observe(section);
-        });
-        window.addEventListener('scroll', () => {
-            const scrolled = window.
+</body>
+</html>
